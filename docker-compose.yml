@@ -2,11 +2,26 @@
 
 version: '3.1'
 services:
+  adminer:
+    build: ./adminer-fastcgi/
+    container_name: "Adminer-fastcgi"
+    depends_on:
+      - postgres
+    environment:
+      ADMINER_DEFAULT_SERVER: "postgres"
+    ports:
+      - "49153:8080"
   php-fpm:
     build: ./php-fpm/
     container_name: "PHP-fpm"
     volumes:
       - ./nginx/web/:/usr/share/nginx/html/
+  postgres:
+    build: ./postgres/
+    container_name: "Postgres"
+    environment:
+      POSTGRES_PASSWORD: "pass4dev"
+      POSTGRES_USER:     "developer"
   nginx:
     build: ./nginx/
     container_name: "Nginx"
