@@ -1,8 +1,8 @@
 # php-development-environment
 This repository is personal development environment for PHP on The docker.
 
-## port number
-* Nginx's root: 49152
+## Port number
+* Nginx: 49152
 * PHP-fpm: 9000
 
 ## License
