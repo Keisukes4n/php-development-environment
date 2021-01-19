@@ -1,26 +1,26 @@
-# Built on Windows 10 Home 20H2
+# Built on Windows10(20H2)
 
 version: '3.1'
 services:
   adminer:
-    build: ./adminer-fastcgi/
-    container_name: "Adminer-fastcgi"
+    build: ./adminer/
+    container_name: "Adminer"
     depends_on:
       - postgres
     environment:
-      ADMINER_DEFAULT_SERVER: "postgres"
+      ADMINER_DEFAULT_SERVER: postgres
     ports:
       - "49153:8080"
   php-fpm:
     build: ./php-fpm/
     container_name: "PHP-fpm"
     volumes:
-      - ./nginx/web/:/usr/share/nginx/html/
+      - ./nginx/html/:/usr/share/nginx/html/
   postgres:
     build: ./postgres/
     container_name: "Postgres"
     environment:
-      POSTGRES_PASSWORD: "pass4dev"
+      POSTGRES_PASSWORD: "pass4develop"
       POSTGRES_USER:     "developer"
   nginx:
     build: ./nginx/
@@ -30,6 +30,5 @@ services:
     ports: 
       - "49152:80"
     volumes:
-      - ./nginx/web/:/usr/share/nginx/html/
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-  
+      - ./nginx/html/:/usr/share/nginx/html/
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
