@@ -1,5 +1,6 @@
 # containers-php-test
 This repository is personal development environment for the PHP and the Postgres on the docker.
+Version: 0.0.9
 
 ## Port number
 * 80: Nginx
