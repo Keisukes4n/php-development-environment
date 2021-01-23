@@ -31,7 +31,7 @@ services:
     depends_on:
       - php-fpm
     ports: 
-      - "49152:80"
+      - "80:80"
     volumes:
       - ./nginx/html/:/usr/share/nginx/html/
       - ./nginx/conf.d/:/etc/nginx/conf.d/

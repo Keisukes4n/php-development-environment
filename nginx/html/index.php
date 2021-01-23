@@ -7,6 +7,9 @@
   </head>
   <body>
     <h1>index.php</h1>
-    <?php phpinfo(); ?>
+    <ul>
+      <li><a href="/pages/phpinfo.php">/pages/phpinfo.php</a></li>
+      <li><a href="/pages/test-message.html">/pages/test-message.html</a></li>
+    </ul>
   </body>
 </html>

@@ -2,8 +2,8 @@
 This repository is personal development environment for the PHP and the Postgres on the docker.
 
 ## Port number
+* 80: Nginx
 * 9000: PHP-fpm
-* 49152: Nginx
 * 49153: Adminer
 
 ## License
