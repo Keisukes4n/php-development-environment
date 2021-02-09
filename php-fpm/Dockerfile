@@ -1,3 +1,3 @@
 # Dockerfile for PHP-fpm image
 
-FROM php:8.0.1-fpm
+FROM php:8.0.2-fpm
