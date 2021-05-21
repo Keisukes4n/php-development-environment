@@ -1,7 +1,7 @@
 # containers-php-test
 This repository is personal development environment for PHP and the Postgres on the docker, and is published for a beginner like me.
 
-Version: 0.0.11
+Version: 0.0.12
 
 ## Information of containers
 Information of each container is as follows.
