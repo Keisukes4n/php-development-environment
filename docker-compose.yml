@@ -1,36 +1,38 @@
 
 version: '3.1'
 services:
-  adminer-standalone:
-    build: ./adminer-standalone/
-    container_name: "Adminer-standalone"
-    depends_on:
-      - postgres
-    environment:
-      ADMINER_DEFAULT_SERVER: postgres
-    ports:
-      - "49153:8080"
   nginx:
-    build: ./nginx/
     container_name: "Nginx"
     depends_on:
       - php-fpm
+    image: nginx:1.20
     ports: 
       - "80:80"
     volumes:
       - ./nginx/html/:/usr/share/nginx/html/
       - ./nginx/conf.d/:/etc/nginx/conf.d/
+  pgadmin:
+    container_name: "pgAdmin"
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL:    "admin@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "pass4admin"
+    image: dpage/pgadmin4:5.3
+    ports:
+      - "49153:80"
+    volumes:
+      - ./pgadmin/:/var/lib/pgadmin/
   php-fpm:
-    build: ./php-fpm/
     container_name: "PHP-fpm"
+    image: php:8.0.6-fpm
     volumes:
       - ./nginx/html/:/usr/share/nginx/html/
       - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
   postgres:
-    build: ./postgres/
     container_name: "Postgres"
     environment:
-      POSTGRES_PASSWORD: "pass4develop"
-      POSTGRES_USER:     "developer"
+      POSTGRES_PASSWORD: "pass4dev"
+    image: postgres:13.3
     volumes:
       - ./postgres/data/:/var/lib/postgresql/data/

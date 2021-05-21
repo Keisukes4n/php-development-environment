@@ -1,0 +1,6 @@
+
+pgadmin/pgadmin4.db
+pgadmin/sessions/
+pgadmin/storage/
+
+postgres/data/
