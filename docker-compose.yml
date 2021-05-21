@@ -2,37 +2,38 @@
 version: '3.1'
 services:
   nginx:
+    build: ./nginx/
     container_name: "Nginx"
     depends_on:
       - php-fpm
-    image: nginx:1.20
     ports: 
       - "80:80"
     volumes:
       - ./nginx/html/:/usr/share/nginx/html/
       - ./nginx/conf.d/:/etc/nginx/conf.d/
   pgadmin:
+    build: ./pgadmin/
     container_name: "pgAdmin"
     depends_on:
-      - postgres
+      - postgresql
     environment:
-      PGADMIN_DEFAULT_EMAIL:    "admin@example.com"
-      PGADMIN_DEFAULT_PASSWORD: "pass4admin"
-    image: dpage/pgadmin4:5.3
+      PGADMIN_DEFAULT_EMAIL:    "dev@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "pass4dev"
     ports:
       - "49153:80"
     volumes:
       - ./pgadmin/:/var/lib/pgadmin/
   php-fpm:
+    build: ./php-fpm/
     container_name: "PHP-fpm"
-    image: php:8.0.6-fpm
     volumes:
       - ./nginx/html/:/usr/share/nginx/html/
       - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
-  postgres:
-    container_name: "Postgres"
+  postgresql:
+    build: ./postgresql/
+    container_name: "PostgreSQL"
     environment:
       POSTGRES_PASSWORD: "pass4dev"
-    image: postgres:13.3
+      POSTGRES_USER    : "dev"
     volumes:
-      - ./postgres/data/:/var/lib/postgresql/data/
+      - ./postgresql/data/:/var/lib/postgresql/data/
